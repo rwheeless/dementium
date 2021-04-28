@@ -8,25 +8,41 @@ public class PlayerController : MonoBehaviour
     public float MovementSpeed = 1;
     public float JumpForce = 1;
 
-    public GameObject Fader;
-    private Animator anim;
+    private Animator animator;
 
     private Rigidbody2D rigidbody2d;
 
     private bool age1;
     private bool age2;
     private bool age3;
+
+    Vector2 lookDirection = new Vector2(1,0);
     
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        anim = Fader.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
        var movement = Input.GetAxis("Horizontal");
        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+
+       float horizontal = Input.GetAxis("Horizontal");
+       float vertical = Input.GetAxis("Vertical");
+
+       Vector2 move = new Vector2(horizontal, vertical);
+
+       if(!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+            {
+                lookDirection.Set(move.x, move.y);
+                lookDirection.Normalize();
+            }
+
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
 
        if (Input.GetButtonDown("Jump") && Mathf.Abs(rigidbody2d.velocity.y) < 0.001f)
        {
@@ -49,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
            if (age3 == true)
            {
-
+               age3 = false;
            }
        }
     }
