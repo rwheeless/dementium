@@ -8,21 +8,19 @@ public class PlayerController : MonoBehaviour
     public float MovementSpeed = 1;
     public float JumpForce = 1;
 
-    [SerializeField]
-    public GameObject closedDoorL1;
-    [SerializeField]
-    public GameObject openDoorL1;
-
-    private bool openUp;
+    public GameObject Fader;
+    private Animator anim;
 
     private Rigidbody2D rigidbody2d;
+
+    private bool age1;
+    private bool age2;
+    private bool age3;
     
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-
-        openDoorL1.gameObject.SetActive (false);
-        closedDoorL1.gameObject.SetActive (true);
+        anim = Fader.GetComponent<Animator>();
     }
 
     void Update()
@@ -37,19 +35,40 @@ public class PlayerController : MonoBehaviour
 
        if (Input.GetKey(KeyCode.E))
        {
-           if (openUp == true)
+           if (age1 == true)
            {
-                openDoorL1.gameObject.SetActive (true);
-                closedDoorL1.gameObject.SetActive (false);
+               transform.position = new Vector3 (-30, 2, 0);
+               age1 = false;
+           }
+
+           if (age2 == true)
+           {
+               transform.position = new Vector3 (-75, -5, 0);
+               age2 = false;
+           }
+
+           if (age3 == true)
+           {
+
            }
        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("nearDoor1"))
+        if (other.gameObject.CompareTag("nearBed1"))
         {
-            openUp = true;
+            age1 = true;
+        }
+
+        if (other.gameObject.CompareTag("nearBed2"))
+        {
+            age2 = true;
+        }
+
+        if (other.gameObject.CompareTag("nearBed3"))
+        {
+            age3 = true;
         }
     }
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - nearDoor1
+  - nearBed1
+  - nearBed2
+  - nearBed3
   layers:
   - Default
   - TransparentFX
