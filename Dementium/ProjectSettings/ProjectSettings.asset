@@ -526,29 +526,6 @@ PlayerSettings:
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []
   ps4attribVROutputEnabled: 0
-  ps5ParamFilePath: 
-  ps5VideoOutPixelFormat: 0
-  ps5VideoOutInitialWidth: 1920
-  ps5VideoOutOutputMode: 1
-  ps5BackgroundImagePath: 
-  ps5StartupImagePath: 
-  ps5Pic2Path: 
-  ps5StartupImagesFolder: 
-  ps5IconImagesFolder: 
-  ps5SaveDataImagePath: 
-  ps5SdkOverride: 
-  ps5BGMPath: 
-  ps5ShareOverlayImagePath: 
-  ps5NPConfigZipPath: 
-  ps5Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
-  ps5UseResolutionFallback: 0
-  ps5UseAudio3dBackend: 0
-  ps5ScriptOptimizationLevel: 2
-  ps5Audio3dVirtualSpeakerCount: 14
-  ps5UpdateReferencePackage: 
-  ps5disableAutoHideSplash: 0
-  ps5OperatingSystemCanDisableSplashScreen: 0
-  ps5IncludedModules: []
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
@@ -655,10 +632,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 45edfdf6-1c6a-4a64-a822-e2308db9e122
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Dementium (1)
+  organizationId: angelapage1617
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
