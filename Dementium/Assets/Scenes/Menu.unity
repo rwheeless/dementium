@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 720321214}
   - component: {fileID: 720321213}
   - component: {fileID: 720321212}
+  - component: {fileID: 720321216}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -913,6 +914,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &720321216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720321211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc0cc9584c58ac4a8e9a08e8d586a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audiomixer: {fileID: 24100000, guid: 01daab45ab1a0cf429e4fc85bd19762c, type: 2}
 --- !u!1 &839214901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,13 +2284,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 511421810}
   m_HandleRect: {fileID: 1758393405}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 720321216}
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1934252091
 GameObject:
   m_ObjectHideFlags: 0
