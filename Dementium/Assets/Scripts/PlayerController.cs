@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float MovementSpeed = 1;
     public float JumpForce = 1;
+    private int count;
+
+    public int health { get { return currentHealth; }}
+    int currentHealth;
 
     private Animator animator;
 
@@ -16,12 +21,31 @@ public class PlayerController : MonoBehaviour
     private bool age2;
     private bool age3;
 
+    private bool level2;
+    private bool level3;
+
+    public Text countText;
+    public Text loseText;
+
+    [SerializeField]
+    GameObject inter1;
+    [SerializeField]
+    GameObject inter2;
+
+
+
     Vector2 lookDirection = new Vector2(1,0);
     
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        count = 3;
+        SetCountText ();
+
+        inter1.gameObject.SetActive (false);
+        inter2.gameObject.SetActive (false);
     }
 
     void Update()
@@ -33,6 +57,11 @@ public class PlayerController : MonoBehaviour
        float vertical = Input.GetAxis("Vertical");
 
        Vector2 move = new Vector2(horizontal, vertical);
+
+       if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
 
        if(!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
             {
@@ -53,19 +82,40 @@ public class PlayerController : MonoBehaviour
        {
            if (age1 == true)
            {
-               transform.position = new Vector3 (-30, 2, 0);
+               transform.position = new Vector3 (17, 20, 0);
+               inter1.gameObject.SetActive (true);
+               level2 = true;
                age1 = false;
            }
 
            if (age2 == true)
            {
-               transform.position = new Vector3 (-75, -5, 0);
+               transform.position = new Vector3 (17, 20, 0);
+               inter2.gameObject.SetActive (true);
+               level3 = true;
                age2 = false;
            }
 
            if (age3 == true)
            {
                age3 = false;
+           }
+       }
+
+       if (Input.GetKey(KeyCode.R))
+       {
+           if (level2 == true)
+           {
+               transform.position = new Vector3 (-31, 1, 0);
+               inter1.gameObject.SetActive (false);
+               level2 = false;
+           }
+
+           if (level3 == true)
+           {
+               transform.position = new Vector3 (-75, -5, 0);
+               inter2.gameObject.SetActive (false);
+               level3 = false;
            }
        }
     }
@@ -86,5 +136,33 @@ public class PlayerController : MonoBehaviour
         {
             age3 = true;
         }
+
+        if(other.gameObject.CompareTag("Ghost"))
+        {
+            count = count - 1;
+            SetCountText ();
+        }
     }
+
+    void SetCountText ()
+    {
+        countText.text = "Health: " + count.ToString ();
+
+        if (count == 0)
+        {
+            loseText.text = "GAME OVER. Press R to Restart.";
+            
+            Restart();
+            count = 0;
+        }
+    }
+
+    void Restart()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Main_Level");
+        }
+    }
+
 }

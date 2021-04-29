@@ -8,6 +8,9 @@ TagManager:
   - nearBed1
   - nearBed2
   - nearBed3
+  - toTwo
+  - toThree
+  - Ghost
   layers:
   - Default
   - TransparentFX
