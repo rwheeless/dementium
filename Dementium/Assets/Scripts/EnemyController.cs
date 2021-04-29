@@ -15,11 +15,15 @@ public class EnemyController : MonoBehaviour
 
     private float journeyLength;
 
+    //private Animator animator;
+
     void Start()
      {
           startTime = Time.time;
 
           journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+
+          //animator = GetComponent<Animator>();
      }
 
     void Update()

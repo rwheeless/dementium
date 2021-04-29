@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     GameObject inter1;
     [SerializeField]
     GameObject inter2;
+    [SerializeField]
+    GameObject inter3;
 
 
 
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         inter1.gameObject.SetActive (false);
         inter2.gameObject.SetActive (false);
+        inter3.gameObject.SetActive (false);
     }
 
     void Update()
@@ -57,6 +60,16 @@ public class PlayerController : MonoBehaviour
        float vertical = Input.GetAxis("Vertical");
 
        Vector2 move = new Vector2(horizontal, vertical);
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("Dementium");
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
        if (Input.GetKey("escape"))
         {
@@ -98,6 +111,8 @@ public class PlayerController : MonoBehaviour
 
            if (age3 == true)
            {
+               transform.position = new Vector3 (17, 20, 0);
+               inter3.gameObject.SetActive (true);
                age3 = false;
            }
        }
@@ -142,6 +157,12 @@ public class PlayerController : MonoBehaviour
             count = count - 1;
             SetCountText ();
         }
+
+        if(other.gameObject.CompareTag("DEATH"))
+        {
+            count = 0;
+            SetCountText ();
+        }
     }
 
     void SetCountText ()
@@ -150,19 +171,10 @@ public class PlayerController : MonoBehaviour
 
         if (count == 0)
         {
-            loseText.text = "GAME OVER. Press R to Restart.";
-            
-            Restart();
+            loseText.text = "GAME OVER. Press L to Restart.";
             count = 0;
         }
     }
 
-    void Restart()
-    {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Main_Level");
-        }
-    }
 
 }

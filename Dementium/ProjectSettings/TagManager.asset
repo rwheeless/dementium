@@ -11,6 +11,7 @@ TagManager:
   - toTwo
   - toThree
   - Ghost
+  - DEATH
   layers:
   - Default
   - TransparentFX
